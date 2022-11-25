@@ -53,7 +53,6 @@ export default function UserContext({ children }) {
   };
 
   const signInWithProvider = (provider) => {
-    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 

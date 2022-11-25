@@ -40,4 +40,8 @@ code {
   .header .active {
     @apply font-semibold text-blue-500 border-b-2   border-blue-500;
   }
+
+  .sidebar .active {
+    @apply bg-blue-600 text-white hover:bg-blue-500 hover:rounded-r-full rounded-r-full;
+  }
 }

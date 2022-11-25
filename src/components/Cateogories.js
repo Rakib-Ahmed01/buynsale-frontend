@@ -13,6 +13,7 @@ export default function Cateogories() {
       return data.data;
     }
   );
+
   if (isLoading) {
     return <Loader />;
   }

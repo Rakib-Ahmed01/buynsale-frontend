@@ -1,6 +1,9 @@
 import Main from '../layouts/Main';
+import ProductsLayout from '../layouts/ProductsLayout';
 import Home from '../pages/Home';
 import Login from '../pages/Login';
+import Products from '../pages/Products';
+import ProductsByCategoryId from '../pages/ProductsByCategoryId';
 import Register from '../pages/Register';
 
 const { createBrowserRouter } = require('react-router-dom');
@@ -9,11 +12,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Main />,
-    errorElement: (
-      <div className="w-full h-screen flex justify-center items-center">
-        <h1 className="text-xl">Something Went Wrong</h1>
-      </div>
-    ),
     children: [
       {
         path: '/home',
@@ -30,6 +28,26 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: '/products',
+    element: <ProductsLayout />,
+    children: [
+      {
+        path: '/products/:id',
+        element: <ProductsByCategoryId />,
+      },
+    ],
+  },
+  {
+    path: '/all-products',
+    element: <ProductsLayout />,
+    children: [
+      {
+        index: true,
+        element: <Products />,
       },
     ],
   },

@@ -86,9 +86,16 @@ const Header = () => {
                 </NavLink>
                 <NavLink
                   className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
-                  to="/products"
+                  to="/all-products"
                 >
                   Products
+                </NavLink>
+
+                <NavLink
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                  to="/blog"
+                >
+                  Blog
                 </NavLink>
                 {!user ? (
                   <>
@@ -106,12 +113,6 @@ const Header = () => {
                       to="/dashboard"
                     >
                       Dashboard
-                    </NavLink>
-                    <NavLink
-                      className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
-                      to="/blog"
-                    >
-                      Blog
                     </NavLink>
                     <img
                       src={user.photoURL}
