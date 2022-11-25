@@ -5,7 +5,7 @@ const Banner = () => {
     <div className="rounded-sm bg-black">
       <div className="container px-6 py-8 md:py-16 mx-auto">
         <div className="items-center lg:flex">
-          <div className="w-full lg:w-1/2">
+          <div className="w-full lg:w-1/2" data-aos="fade-right">
             <div className="lg:max-w-lg">
               <h1 className="text-2xl font-semibold text-gray-100 uppercase dark:text-white lg:text-4xl">
                 Best Quality Phone at
@@ -26,7 +26,10 @@ const Banner = () => {
             </div>
           </div>
 
-          <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+          <div
+            data-aos="fade-left"
+            className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2"
+          >
             <img
               src="https://i.ibb.co/xMvWZLf/clay-banks-Xv-S-u-KUo-Uao-unsplash.jpg"
               alt="our shop"

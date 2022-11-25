@@ -46,14 +46,10 @@ export default function UserContext({ children }) {
   };
 
   const updateUserProfile = (name, url) => {
-    updateProfile(auth.currentUser, {
+    return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: url ? url : 'https://source.unsplash.com/random/People',
-    })
-      .then(() => {})
-      .catch((error) => {
-        toast.error(error.message.replace('Firebase: ', ''));
-      });
+    });
   };
 
   const signInWithProvider = (provider) => {

@@ -5,7 +5,10 @@ export default function Category({ category }) {
   console.log(image);
   return (
     <>
-      <div className="category overflow-hidden max-w-[400px] max-h-[250px] relative mx-auto">
+      <div
+        className="category overflow-hidden max-w-[400px] max-h-[250px] relative mx-auto"
+        data-aos="fade-left"
+      >
         <div className="">
           <Link to={`products/${_id}`}>
             <img src={image} alt={categoryName} className="w-full h-full" />

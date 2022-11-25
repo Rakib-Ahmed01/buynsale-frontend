@@ -1,9 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import UserContext from './contexts/UserContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+
+AOS.init();
 
 const queryClient = new QueryClient();
 
