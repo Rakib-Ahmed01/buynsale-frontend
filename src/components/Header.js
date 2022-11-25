@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { FiLogOut } from 'react-icons/fi';
+import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import { AuthContext } from '../contexts/UserContext';
@@ -99,12 +99,12 @@ const Header = () => {
                 </NavLink>
                 {!user ? (
                   <>
-                    <NavLink
+                    <Link
                       className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:ml-3 md:my-0"
                       to="/login"
                     >
-                      Login
-                    </NavLink>
+                      <FiLogIn title="login" />
+                    </Link>
                   </>
                 ) : (
                   <>

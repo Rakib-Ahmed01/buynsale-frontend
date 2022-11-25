@@ -287,10 +287,7 @@ export default function Register() {
             </div>
           </div>
           <div className="mt-6">
-            <button
-              className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-              disabled={loading}
-            >
+            <button className="w-full btn" disabled={loading}>
               {loading ? <SmallLoader /> : 'Register'}
             </button>
           </div>
@@ -311,7 +308,7 @@ export default function Register() {
             <div className="flex items-center mt-6 -mx-2">
               <button
                 type="button"
-                className="flex items-center justify-center w-full px-6 py-3 mx-2 text-sm font-medium text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
+                className="flex items-center justify-center w-full secondary-btn mx-2"
                 onClick={handleGoogelLogin}
                 disabled={loadingForGoogle}
               >

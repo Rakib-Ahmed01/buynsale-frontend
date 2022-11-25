@@ -7,7 +7,7 @@ const ProductsLayout = () => {
   return (
     <div className="relative">
       <Navbar />
-      <div className="flex gap-3 pr-3">
+      <div className="flex gap-4 pr-3">
         <div className="h-screen sticky top-0">
           <Sidebar />
         </div>

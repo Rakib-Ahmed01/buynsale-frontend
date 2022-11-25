@@ -2,6 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import ReactDOM from 'react-dom/client';
+import { PhotoProvider } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 import App from './App';
 import UserContext from './contexts/UserContext';
 import './index.css';
@@ -15,7 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <QueryClientProvider client={queryClient}>
     <UserContext>
-      <App />
+      <PhotoProvider>
+        <App />
+      </PhotoProvider>
     </UserContext>
   </QueryClientProvider>
 );

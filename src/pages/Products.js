@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Loader from '../components/Loader';
+import Product from '../components/Product';
 
 export default function Products() {
   const { data: products, isLoading } = useQuery(['products'], async () => {
@@ -12,6 +13,11 @@ export default function Products() {
     return <Loader />;
   }
 
-  console.log(products);
-  return <div>Products</div>;
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
+      {products.map((product) => {
+        return <Product key={product._id} product={product} />;
+      })}
+    </div>
+  );
 }

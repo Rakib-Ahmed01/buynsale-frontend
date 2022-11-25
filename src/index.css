@@ -20,8 +20,13 @@ code {
 
 @layer components {
   .btn {
-    @apply tracking-wider px-6 py-2 font-medium text-sm text-white uppercase transition-colors duration-300 transform  rounded-md lg:w-auto focus:outline-none border border-blue-500 text-center bg-blue-500 hover:bg-blue-400 focus:bg-blue-400;
+    @apply px-6 py-[10px] text-sm font-semibold tracking-wide text-white uppercase transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none;
   }
+
+  .secondary-btn {
+    @apply tracking-wider px-6 py-[10px] text-sm font-semibold text-white transition-colors uppercase duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none;
+  }
+
   .outline-btn {
     @apply tracking-wider px-6 py-2 font-medium  text-sm text-blue-500 uppercase transition-colors duration-300 transform bg-white rounded-md lg:w-auto  focus:outline-none border-2 hover:bg-blue-500 hover:text-white border-blue-500 text-center;
   }
@@ -43,5 +48,9 @@ code {
 
   .sidebar .active {
     @apply bg-blue-600 text-white hover:bg-blue-500 hover:rounded-r-full rounded-r-full;
+  }
+
+  .product img {
+    @apply w-[355px] h-[235px] object-cover;
   }
 }
