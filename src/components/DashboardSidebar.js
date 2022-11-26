@@ -12,7 +12,21 @@ const DashboardSidebar = () => {
   }
   return (
     <div className="sidebar sticky top-0">
-      <div className="flex flex-col w-[100px] sm:w-48 md:w-64 h-screen bg-white  dark:bg-gray-900 dark:border-gray-700">
+      <div className="flex flex-col w-26 sm:w-48 md:w-64 h-screen bg-white  dark:bg-gray-900 dark:border-gray-700">
+        <div className="flex flex-col items-center my-4 mx-2">
+          <img
+            className="object-cover w-24 h-24 mx-2 rounded-full"
+            src={user?.photoURL}
+            alt="avatar"
+          />
+          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
+            {user?.displayName} (
+            <span className="capitalize">{userStatus?.role}</span>)
+          </h4>
+          <p className="sm:block mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">
+            {user?.email}
+          </p>
+        </div>
         <NavLink
           className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200"
           to={`/dashboard/my-orders`}
