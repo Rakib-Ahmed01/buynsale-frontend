@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 
-export default function Category({ category }) {
+export default function Category({ category, index }) {
   const { _id, image, categoryName } = category;
   return (
     <>
       <div
         className="category overflow-hidden max-w-[400px] max-h-[250px] relative mx-auto"
-        data-aos="fade-left"
+        data-aos={`${index % 2 !== 0 ? 'fade-left' : 'fade-right'}`}
       >
         <div className="">
           <Link to={`../products/${_id}`}>

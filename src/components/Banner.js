@@ -20,7 +20,7 @@ const Banner = () => {
                 exploring today. Over 10+ exiting destinations...
               </p>
 
-              <Link to="/products" className="btn mt-6 inline-block">
+              <Link to="/all-products" className="btn mt-6 inline-block">
                 All Products
               </Link>
             </div>

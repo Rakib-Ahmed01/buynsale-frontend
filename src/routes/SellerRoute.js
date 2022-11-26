@@ -4,7 +4,7 @@ import Loader from '../components/Loader';
 import { AuthContext } from '../contexts/UserContext';
 import useUserStatus from '../hooks/useUserStatus';
 
-export default function AdminRoute({ children }) {
+export default function SellerRoute({ children }) {
   const { user } = useContext(AuthContext);
   const { userStatus, loading } = useUserStatus(user?.email);
 
@@ -12,8 +12,8 @@ export default function AdminRoute({ children }) {
     return <Loader />;
   }
 
-  if (userStatus?.role !== 'admin') {
-    return <Navigate to="/dashboard/" replace />;
+  if (userStatus?.role !== 'admin' && userStatus?.role !== 'seller') {
+    return <Navigate to="/dashboard" replace />;
   }
   return children;
 }

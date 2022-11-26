@@ -47,10 +47,10 @@ code {
   }
 
   .sidebar .active {
-    @apply bg-blue-600 text-white hover:bg-blue-500 hover:rounded-r-full rounded-r-full;
+    @apply bg-blue-600 text-white hover:bg-blue-500/90 hover:rounded-r-full rounded-r-full;
   }
 
   .product img {
-    @apply w-[355px] h-[235px] object-cover;
+    @apply w-full h-[235px] object-cover;
   }
 }

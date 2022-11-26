@@ -9,7 +9,9 @@ import UserContext from './contexts/UserContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 
-AOS.init();
+AOS.init({
+  duration: 600,
+});
 
 const queryClient = new QueryClient();
 

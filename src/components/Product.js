@@ -2,7 +2,7 @@ import { formatDistanceToNowStrict } from 'date-fns';
 import { GoVerified } from 'react-icons/go';
 import { PhotoView } from 'react-photo-view';
 
-export default function Product({ product }) {
+export default function Product({ product, index }) {
   const {
     image,
     title,
@@ -19,7 +19,11 @@ export default function Product({ product }) {
   } = product;
 
   return (
-    <div className="product border rounded">
+    <div
+      className="product border rounded-md"
+      // data-aos={`${index % 2 !== 0 ? 'fade-left' : 'fade-right'}`}
+      // data-aos-easing="ease-in-out"
+    >
       <div>
         <PhotoView src={image}>
           <img src={image} alt="" />

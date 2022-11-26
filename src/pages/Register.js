@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { HiOutlineEye, HiOutlineEyeOff } from 'react-icons/hi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import user from '../assets/images/user.png';
 import SmallLoader from '../components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
@@ -26,6 +26,9 @@ export default function Register() {
   const navigate = useNavigate();
   const [loadingForGoogle, setLoadingForGoogle] = useState(false);
   const [seePassword, setSeePassword] = useState(false);
+  const location = useLocation();
+
+  const from = location?.state?.path || '/home';
 
   const handleRegister = (data) => {
     setLoading(true);
@@ -87,7 +90,7 @@ export default function Register() {
           .then((data) => {
             setLoadingForGoogle(false);
             toast.success('Login Successfull');
-            navigate('/');
+            navigate(from);
             console.log(data);
           })
           .catch((err) => {
@@ -168,6 +171,7 @@ export default function Register() {
               {...register('name', {
                 required: '*Username is required',
               })}
+              placeholder="Username"
             />
           </div>
           {errors.name && (

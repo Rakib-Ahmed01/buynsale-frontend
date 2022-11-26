@@ -4,10 +4,10 @@ import router from './router/router';
 
 function App() {
   return (
-    <>
+    <div className="max-w-[1500px] mx-auto">
       <Toaster />
       <RouterProvider router={router} />
-    </>
+    </div>
   );
 }
 
