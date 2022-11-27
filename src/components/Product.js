@@ -2,6 +2,7 @@ import { Input, Modal } from '@mantine/core';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
 import { FiPhoneCall } from 'react-icons/fi';
 import { GiSmartphone } from 'react-icons/gi';
@@ -25,6 +26,7 @@ export default function Product({ product }) {
     location,
     sellerVerified,
     categoryName,
+    _id,
   } = product;
 
   const {
@@ -35,8 +37,68 @@ export default function Product({ product }) {
   } = useForm();
 
   const hanldeBooking = (data) => {
-    console.log(data);
+    const { number, location } = data;
+
+    const order = { ...product };
+    delete order._id;
+
+    fetch(`${process.env.REACT_APP_url}/orders`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        ...order,
+        buyerEmail: user.email,
+        buyerName: user.displayName,
+        buyerPhone: number,
+        meetingLocation: location,
+        productId: _id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const { upsertedId, matchedCount } = data;
+        if (!upsertedId && matchedCount) {
+          toast.error(`You've already booked ${title}`);
+        } else {
+          toast.success(`${title} has been added to your account`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Something went worng!');
+      });
+
     reset();
+    setOpened(false);
+  };
+
+  const handleWishlist = () => {
+    const wishlistProduct = { ...product };
+    delete wishlistProduct._id;
+
+    fetch(`${process.env.REACT_APP_url}/wishlists`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        ...wishlistProduct,
+        buyerEmail: user.email,
+        buyerName: user.displayName,
+        productId: _id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const { upsertedId, matchedCount } = data;
+        if (!upsertedId && matchedCount) {
+          toast.error(`You've already wishlisted ${title}`);
+        } else {
+          toast.success(`${title} has been added to your wishlist`);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Something went worng!');
+      });
   };
 
   const { user } = useContext(AuthContext);
@@ -93,15 +155,22 @@ export default function Product({ product }) {
         <button className="btn w-full" onClick={() => setOpened(true)}>
           Book Now
         </button>
-        <button className="secondary-btn w-full">Wishlist</button>
+        <button className="secondary-btn w-full" onClick={handleWishlist}>
+          Wishlist
+        </button>
       </div>
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
-        // title={`Book Now - ${product.title}`}
+        transitionDuration={500}
         centered
       >
-        <h1 className="text-xl font-semibold mb-2 -mt-11">{product.title}</h1>
+        <h1 className="text-xl font-semibold mb-1 -mt-11">{product.title}</h1>
+        <img
+          src={product.image}
+          alt=""
+          className="mb-2 w-full h-[300px] object-cover rounded"
+        />
         <form className="space-y-2" onSubmit={handleSubmit(hanldeBooking)}>
           <Input
             placeholder={user.displayName}
@@ -130,9 +199,9 @@ export default function Product({ product }) {
               },
             })}
           />
-          {errors.phoneNumber && (
+          {errors.number && (
             <small className="text-red-500 -mt-1">
-              {errors.phoneNumber.message}
+              {errors.number.message}
             </small>
           )}
           <Input
@@ -142,16 +211,12 @@ export default function Product({ product }) {
               required: 'Meeting location is required*',
             })}
           />
-          {errors.meetingLocation && (
+          {errors.location && (
             <small className="text-red-500 -mt-1">
-              {errors.meetingLocation.message}
+              {errors.location.message}
             </small>
           )}
-          <button
-            type="submit"
-            className="btn w-full"
-            onClick={() => setOpened(false)}
-          >
+          <button type="submit" className="btn w-full">
             Submit
           </button>
         </form>

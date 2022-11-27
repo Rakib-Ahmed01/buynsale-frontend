@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { FcMenu } from 'react-icons/fc';
 import { FiLogIn, FiLogOut } from 'react-icons/fi';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
@@ -12,7 +13,7 @@ const Header = () => {
     <div className="header">
       <header className="bg-white dark:bg-gray-900">
         <nav className="relative bg-white dark:bg-gray-900">
-          <div className="container pl-4 pr-6 py-4 mx-auto md:flex md:justify-between md:items-center">
+          <div className="container pl-1 pr-1 py-4 mx-auto md:flex md:justify-between md:items-center">
             <div className="flex items-center justify-between">
               <div className="flex gap-1 items-center">
                 <img
@@ -37,20 +38,9 @@ const Header = () => {
                   className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
                   aria-label="toggle menu"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                  <FcMenu
                     className={`${!isOpen ? 'block' : 'hidden'} w-6 h-6`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M4 8h16M4 16h16"
-                    />
-                  </svg>
+                  />
 
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,9 +63,9 @@ const Header = () => {
             <div
               className={`${
                 isOpen
-                  ? 'translate-x-0 opacity-100 '
+                  ? 'translate-x-0 opacity-100'
                   : 'opacity-0 -translate-x-full'
-              } absolute inset-x-0 z-20 w-full px-6 py-4 transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent md:mt-0 md:p-0 md:top-0 md:relative md:w-auto md:opacity-100 md:translate-x-0 md:flex md:justify-center md:items-center`}
+              } absolute inset-x-0 z-20 w-full py-4 transition-all duration-300 pl-2 ease-in-out bg-white dark:bg-gray-900 md:bg-transparent md:dark:bg-transparent md:mt-0 md:p-0 md:top-0 md:relative md:w-auto md:opacity-100 md:translate-x-0 md:flex md:justify-center md:items-center`}
             >
               <div className="flex flex-col md:flex-row md:items-center ">
                 <NavLink
