@@ -1,8 +1,17 @@
+import { Input, Modal } from '@mantine/core';
 import { formatDistanceToNowStrict } from 'date-fns';
+import { useContext, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { AiOutlineMail, AiOutlineUser } from 'react-icons/ai';
+import { FiPhoneCall } from 'react-icons/fi';
+import { GiSmartphone } from 'react-icons/gi';
 import { GoVerified } from 'react-icons/go';
+import { IoLocationOutline, IoPricetagOutline } from 'react-icons/io5';
 import { PhotoView } from 'react-photo-view';
+import { AuthContext } from '../contexts/UserContext';
 
-export default function Product({ product, index }) {
+export default function Product({ product }) {
+  const [opened, setOpened] = useState(false);
   const {
     image,
     title,
@@ -18,12 +27,22 @@ export default function Product({ product, index }) {
     categoryName,
   } = product;
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const hanldeBooking = (data) => {
+    console.log(data);
+    reset();
+  };
+
+  const { user } = useContext(AuthContext);
+
   return (
-    <div
-      className="product border rounded-md"
-      // data-aos={`${index % 2 !== 0 ? 'fade-left' : 'fade-right'}`}
-      // data-aos-easing="ease-in-out"
-    >
+    <div className="product border rounded-md">
       <div>
         <PhotoView src={image}>
           <img src={image} alt="" />
@@ -71,9 +90,70 @@ export default function Product({ product, index }) {
         </div>
       </div>
       <div className="flex gap-2 px-2 pb-2">
-        <button className="btn w-full">Book Now</button>
+        <button className="btn w-full" onClick={() => setOpened(true)}>
+          Book Now
+        </button>
         <button className="secondary-btn w-full">Wishlist</button>
       </div>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title={`Book Now - ${product.title}`}
+      >
+        <form className="space-y-2" onSubmit={handleSubmit(hanldeBooking)}>
+          <Input
+            placeholder={user.displayName}
+            icon={<AiOutlineUser />}
+            disabled
+          />
+          <Input placeholder={user.email} icon={<AiOutlineMail />} disabled />
+          <Input
+            placeholder={`${product.title}`}
+            icon={<GiSmartphone />}
+            disabled
+          />
+          <Input
+            placeholder={`${product.resalePrice}Tk`}
+            icon={<IoPricetagOutline />}
+            disabled
+          />{' '}
+          <Input
+            placeholder={`Phone Number (BD)`}
+            icon={<FiPhoneCall />}
+            {...register('number', {
+              required: 'Phone Number is required*',
+              pattern: {
+                value: /(^([+]{1}[8]{2}|0088)?(01){1}[1-9]{1}\d{8})$/,
+                message: 'Invalid Number!',
+              },
+            })}
+          />
+          {errors.phoneNumber && (
+            <small className="text-red-500 -mt-1">
+              {errors.phoneNumber.message}
+            </small>
+          )}
+          <Input
+            placeholder={`Meeting Location`}
+            icon={<IoLocationOutline />}
+            {...register('location', {
+              required: 'Meeting location is required*',
+            })}
+          />
+          {errors.meetingLocation && (
+            <small className="text-red-500 -mt-1">
+              {errors.meetingLocation.message}
+            </small>
+          )}
+          <button
+            type="submit"
+            className="btn w-full"
+            onClick={() => setOpened(false)}
+          >
+            Submit
+          </button>
+        </form>
+      </Modal>
     </div>
   );
 }

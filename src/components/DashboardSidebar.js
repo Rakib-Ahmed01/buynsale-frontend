@@ -39,23 +39,24 @@ const DashboardSidebar = () => {
         >
           <span className="mx-4 font-medium">My Wishlists</span>
         </NavLink>
-        {userStatus?.role === 'seller' ||
-          (userStatus?.role === 'admin' && (
-            <>
-              <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200"
-                to={`/dashboard/add-product`}
-              >
-                <span className="mx-4 font-medium">Add Product</span>
-              </NavLink>
-              <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200"
-                to={`/dashboard/my-products`}
-              >
-                <span className="mx-4 font-medium">My Products</span>
-              </NavLink>
-            </>
-          ))}
+        {userStatus?.role === 'seller' || userStatus?.role === 'admin' ? (
+          <>
+            <NavLink
+              className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200"
+              to={`/dashboard/add-product`}
+            >
+              <span className="mx-4 font-medium">Add Product</span>
+            </NavLink>
+            <NavLink
+              className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200"
+              to={`/dashboard/my-products`}
+            >
+              <span className="mx-4 font-medium">My Products</span>
+            </NavLink>
+          </>
+        ) : (
+          <></>
+        )}
         {userStatus?.role === 'admin' && (
           <>
             <NavLink

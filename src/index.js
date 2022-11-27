@@ -1,3 +1,4 @@
+import { MantineProvider } from '@mantine/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -20,7 +21,13 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <UserContext>
       <PhotoProvider>
-        <App />
+        <MantineProvider
+          theme={{ fontFamily: 'Karla' }}
+          withGlobalStyles
+          withNormalizeCSS
+        >
+          <App />
+        </MantineProvider>
       </PhotoProvider>
     </UserContext>
   </QueryClientProvider>

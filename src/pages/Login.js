@@ -29,14 +29,12 @@ export default function Login() {
 
     signInWithMailAndPass(email, password)
       .then((result) => {
-        console.log(result.user);
         setLoading(false);
         toast.success('Login Successful');
         navigate(from);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
         toast.error(err.message.replace('Firebase: ', ''));
       });
   };
@@ -53,7 +51,6 @@ export default function Login() {
             setLoadingForGoogle(false);
             toast.success('Login Successfull');
             navigate(from);
-            console.log(data);
           })
           .catch((err) => {
             console.log(err);
@@ -62,7 +59,6 @@ export default function Login() {
       })
       .catch((err) => {
         setLoadingForGoogle(false);
-        console.log(err);
         toast.error(err.message.replace('Firebase: ', ''));
       });
   };
@@ -174,7 +170,7 @@ export default function Login() {
                 required: '*Password is required',
                 minLength: {
                   value: 6,
-                  message: 'Wrong Password',
+                  message: 'Wrong Password!',
                 },
               })}
             />
