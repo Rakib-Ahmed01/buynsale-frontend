@@ -98,8 +98,10 @@ export default function Product({ product }) {
       <Modal
         opened={opened}
         onClose={() => setOpened(false)}
-        title={`Book Now - ${product.title}`}
+        // title={`Book Now - ${product.title}`}
+        centered
       >
+        <h1 className="text-xl font-semibold mb-2 -mt-11">{product.title}</h1>
         <form className="space-y-2" onSubmit={handleSubmit(hanldeBooking)}>
           <Input
             placeholder={user.displayName}
