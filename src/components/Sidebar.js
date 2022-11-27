@@ -3,7 +3,7 @@ import axios from 'axios';
 import { HashLoader } from 'react-spinners';
 import ProductCategories from './ProductCategories';
 
-const Sidebar = ({ classes, isDrawer, setOpened }) => {
+const Sidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
   const { data: categories, isLoading } = useQuery(
     ['products-categories'],
     async () => {

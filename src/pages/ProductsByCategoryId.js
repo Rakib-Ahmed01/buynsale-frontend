@@ -22,7 +22,14 @@ export default function ProductsByCategoryId() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       {productsByCategory.map((product, index) => {
-        return <Product key={product._id} product={product} index={index} />;
+        return (
+          <Product
+            key={product._id}
+            product={product}
+            index={index}
+            componentType="main"
+          />
+        );
       })}
     </div>
   );

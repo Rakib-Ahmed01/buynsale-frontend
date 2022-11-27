@@ -30,8 +30,6 @@ const ProductsLayout = () => {
         <Drawer
           opened={opened}
           onClose={() => setOpened(false)}
-          // padding="xl"
-          // size="xl"
           className="md:hidden p-1"
           transitionDuration={600}
         >

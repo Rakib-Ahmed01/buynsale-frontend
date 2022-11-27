@@ -63,6 +63,7 @@ export default function UserContext({ children }) {
           toast.success('Logged out successfully');
         }
         setUser(null);
+        localStorage.removeItem('token-bns');
       })
       .catch((error) => {
         toast.error(error.message.replace('Firebase: ', ''));

@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import user from '../assets/images/user.png';
 import SmallLoader from '../components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
+import saveToken from '../utils/saveTokenToLs';
 
 export default function Register() {
   const {
@@ -61,7 +62,6 @@ export default function Register() {
                     toast.success('Account Created Successfully');
                     logout(false);
                     navigate('/login');
-                    console.log(data);
                   })
                   .catch((err) => console.log(err));
               })
@@ -87,26 +87,32 @@ export default function Register() {
         const { displayName, email } = res.user;
         saveUserToDb(displayName, email)
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             setLoadingForGoogle(false);
             toast.success('Login Successfull');
             navigate(from);
-            console.log(data);
+            saveToken(email, displayName);
           })
           .catch((err) => {
             console.log(err);
             setLoadingForGoogle(false);
+            if (
+              err.message === 'Firebase: Error (auth/popup-closed-by-user).'
+            ) {
+              toast.error('Popup closed by user');
+            }
           });
       })
       .catch((err) => {
         setLoadingForGoogle(false);
         console.log(err);
-        toast.error(err.message.replace('Firebase: ', ''));
+        if (err.message === 'Firebase: Error (auth/popup-closed-by-user).') {
+          toast.error('Popup closed by user');
+        }
       });
   };
 
   const saveUserToDb = (name, email) => {
-    console.log(name, email, isSeller);
     return fetch(`${process.env.REACT_APP_url}/users?email=${email}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },

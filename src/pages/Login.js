@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import user from '../assets/images/user.png';
 import SmallLoader from '../components/SmallLoader';
 import { AuthContext } from '../contexts/UserContext';
+import saveToken from '../utils/saveTokenToLs';
 
 export default function Login() {
   const {
@@ -29,13 +30,20 @@ export default function Login() {
 
     signInWithMailAndPass(email, password)
       .then((result) => {
+        const user = result.user;
         setLoading(false);
         toast.success('Login Successful');
-        navigate(from);
+        navigate(from, { replace: true });
+        saveToken(user.email, user.displayName);
       })
       .catch((err) => {
         console.log(err);
-        toast.error(err.message.replace('Firebase: ', ''));
+        setLoading(false);
+        if (err.message === 'Firebase: Error (auth/user-not-found).') {
+          toast.error('Incorrect email');
+        } else if (err.message === 'Firebase: Error (auth/wrong-password).') {
+          toast.error('Incorrect password');
+        }
       });
   };
 
@@ -47,10 +55,11 @@ export default function Login() {
         const { displayName, email } = res.user;
         saveUserToDb(displayName, email)
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             setLoadingForGoogle(false);
             toast.success('Login Successfull');
-            navigate(from);
+            navigate(from, { replace: true });
+            saveToken(email, displayName);
           })
           .catch((err) => {
             console.log(err);
@@ -59,7 +68,10 @@ export default function Login() {
       })
       .catch((err) => {
         setLoadingForGoogle(false);
-        toast.error(err.message.replace('Firebase: ', ''));
+        console.log(err);
+        if (err.message === 'Firebase: Error (auth/popup-closed-by-user).') {
+          toast.error('Popup closed by user');
+        }
       });
   };
 

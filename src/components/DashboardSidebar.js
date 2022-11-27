@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 import useUserStatus from '../hooks/useUserStatus';
 
-const DashboardSidebar = ({ classes, isDrawer, setOpened }) => {
+const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
   const { user } = useContext(AuthContext);
   const { userStatus, loading } = useUserStatus(user?.email);
 
