@@ -17,6 +17,7 @@ const auth = getAuth(app);
 export default function UserContext({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -80,6 +81,8 @@ export default function UserContext({ children }) {
     setLoading,
     updateUserProfile,
     logout,
+    userRole,
+    setUserRole,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

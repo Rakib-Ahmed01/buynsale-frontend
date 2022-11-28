@@ -1,4 +1,4 @@
-import { Input, Modal } from '@mantine/core';
+import { Input, Modal, Tooltip } from '@mantine/core';
 import { useQueryClient } from '@tanstack/react-query';
 import { formatDistanceToNowStrict } from 'date-fns';
 import { useContext, useState } from 'react';
@@ -9,9 +9,9 @@ import { FiPhoneCall } from 'react-icons/fi';
 import { GiSmartphone } from 'react-icons/gi';
 import { GoVerified } from 'react-icons/go';
 import { IoLocationOutline, IoPricetagOutline } from 'react-icons/io5';
+import { MdReport } from 'react-icons/md';
 import { PhotoView } from 'react-photo-view';
 import { AuthContext } from '../contexts/UserContext';
-
 export default function Product({ product, componentType }) {
   const queryClient = useQueryClient();
   const [opened, setOpened] = useState(false);
@@ -30,6 +30,7 @@ export default function Product({ product, componentType }) {
     categoryName,
     _id,
     productId,
+    isAdvertised,
   } = product;
 
   const {
@@ -49,56 +50,48 @@ export default function Product({ product, componentType }) {
 
   const hanldeBooking = (data) => {
     const { number, location } = data;
-
     const order = { ...product };
     delete order._id;
 
-    console.log(user.email, _id);
-
-    // console.log({
-    //   ...order,
-    //   buyerEmail: user.email,
-    //   buyerName: user.displayName,
-    //   buyerPhone: number,
-    //   meetingLocation: location,
-    //   productId: _id,
-    // });
-
-    fetch(`${process.env.REACT_APP_url}/orders`, {
-      method: 'PUT',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({
-        ...order,
-        buyerEmail: user.email,
-        buyerName: user.displayName,
-        buyerPhone: number,
-        meetingLocation: location,
-        productId: id,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const { upsertedId, matchedCount } = data;
-        if (!upsertedId && matchedCount) {
-          toast.error(`You've already booked ${title}`);
-          queryClient.invalidateQueries({
-            queryKey: ['myOrders'],
-          });
-          queryClient.invalidateQueries({
-            queryKey: ['myWishlists'],
-          });
-        } else {
-          toast.success(`${title} has been added to your account`);
-          queryClient.invalidateQueries({
-            queryKey: ['myWishlists'],
-          });
-        }
+    if (isAdvertised) {
+      toast.error('This Product is already in advertised section');
+    } else {
+      fetch(`${process.env.REACT_APP_url}/orders`, {
+        method: 'PUT',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          ...order,
+          buyerEmail: user.email,
+          buyerName: user.displayName,
+          buyerPhone: number,
+          meetingLocation: location,
+          productId: id,
+        }),
       })
-      .catch((err) => {
-        console.log(err);
-        toast.error('Something went worng!');
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          const { upsertedId, matchedCount } = data;
+          if (!upsertedId && matchedCount) {
+            toast.error(`You've already booked ${title}`);
+            queryClient.invalidateQueries({
+              queryKey: ['myOrders'],
+            });
+            queryClient.invalidateQueries({
+              queryKey: ['myWishlists'],
+            });
+          } else {
+            toast.success(`${title} has been added to your account`);
+            queryClient.invalidateQueries({
+              queryKey: ['myWishlists'],
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error('Something went worng!');
+        });
+    }
 
     reset();
     setOpened(false);
@@ -107,15 +100,6 @@ export default function Product({ product, componentType }) {
   const handleWishlist = () => {
     const wishlistProduct = { ...product };
     delete wishlistProduct._id;
-
-    console.log(user.email, _id);
-
-    // console.log({
-    //   ...wishlistProduct,
-    //   buyerEmail: user.email,
-    //   buyerName: user.displayName,
-    //   productId: _id,
-    // });
 
     fetch(`${process.env.REACT_APP_url}/wishlists`, {
       method: 'PUT',
@@ -143,19 +127,37 @@ export default function Product({ product, componentType }) {
       });
   };
 
+  const handleAdvertise = () => {
+    if (isAdvertised) {
+      toast.error('This Product is already in advertised section');
+    } else
+      fetch(`${process.env.REACT_APP_url}/products`, {
+        method: 'PATCH',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          productId: _id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.acknowledged) {
+            toast.success('Product is added to advertised section');
+            queryClient.invalidateQueries({
+              queryKey: ['myproducts'],
+            });
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error('Something went worng!');
+        });
+  };
+  const handleDelete = () => {};
+
   const { user } = useContext(AuthContext);
 
   return (
-    <div
-      className="product border rounded-md"
-      onClick={() => {
-        if (componentType === 'orders' || componentType === 'wishlists') {
-          console.log(productId);
-        } else {
-          console.log(_id);
-        }
-      }}
-    >
+    <div className="product border rounded-md">
       <div>
         <PhotoView src={image}>
           <img src={image} alt="" />
@@ -164,12 +166,28 @@ export default function Product({ product, componentType }) {
       <div className="p-2">
         <div className="flex justify-between items-center gap-8">
           <h2 className="text-xl font-semibold tracking-wide">{title}</h2>
+          <div className="w-7 h-7 rounded-full bg-red-500 flex justify-center items-center">
+            <Tooltip label="Report to Admin">
+              <button>
+                <MdReport color="white" className="w-5 h-5" />
+              </button>
+            </Tooltip>
+          </div>
         </div>
         <h2 className="text-md tracking-wide flex gap-1 -mt-[2px]">
           <span className="font-semibold text-gray-800">For sale by</span>
           <span className="underline font-semibold text-blue-500 flex items-center gap-1">
-            {sellerName}
-            {sellerVerified && <GoVerified title="Verified Seller" />}
+            {!sellerVerified && sellerName}
+            {sellerVerified && (
+              <Tooltip label="Veified Seller">
+                <div className="flex justify-center items-center gap-[2px]">
+                  <span>{sellerName}</span>
+                  <button>
+                    <GoVerified className="w-4 h-4" />
+                  </button>
+                </div>
+              </Tooltip>
+            )}
           </span>
         </h2>
         <p className="mb-2">
@@ -291,6 +309,19 @@ export default function Product({ product, componentType }) {
               Pay
             </button>
           </div>
+        </div>
+      )}
+      {componentType === 'my-products' && (
+        <div className="flex gap-2 px-2 pb-2">
+          <button className="btn w-full" onClick={handleAdvertise}>
+            Advertise
+          </button>
+          <button
+            className="secondary-btn w-full bg-red-500 hover:bg-red-400"
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
         </div>
       )}
     </div>

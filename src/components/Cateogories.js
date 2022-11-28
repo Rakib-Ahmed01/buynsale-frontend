@@ -31,7 +31,7 @@ export default function Cateogories() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-6 mx-auto">
-          {categories.map((category, index) => {
+          {categories.slice(0, 6).map((category, index) => {
             return (
               <Category key={category._id} category={category} index={index} />
             );

@@ -1,3 +1,4 @@
+import { Tooltip } from '@mantine/core';
 import { useContext, useState } from 'react';
 import { FcMenu } from 'react-icons/fc';
 import { FiLogIn, FiLogOut } from 'react-icons/fi';
@@ -93,7 +94,11 @@ const Header = () => {
                       className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:ml-3 md:my-0"
                       to="/login"
                     >
-                      <FiLogIn title="login" />
+                      <Tooltip label="Login" position="bottom">
+                        <button>
+                          <FiLogIn title="login" />
+                        </button>
+                      </Tooltip>
                     </Link>
                   </>
                 ) : (
@@ -104,17 +109,22 @@ const Header = () => {
                     >
                       Dashboard
                     </NavLink>
-                    <img
-                      src={user.photoURL}
-                      alt={user.displayName}
-                      title={user.displayName}
-                      className="my-2 md:mx-3 block w-8 h-8 rounded-full"
-                    />
-                    <FiLogOut
-                      className="my-2 md:mx-3"
-                      title="logout"
-                      onClick={logout}
-                    />
+                    <Tooltip label={user.displayName}>
+                      <img
+                        src={user.photoURL}
+                        alt={user.displayName}
+                        className="my-2 md:mx-3 block w-8 h-8 rounded-full"
+                      />
+                    </Tooltip>
+                    <Tooltip label="Logout">
+                      <button>
+                        <FiLogOut
+                          className="my-2 md:mx-3"
+                          onClick={logout}
+                          position="bottom"
+                        />
+                      </button>
+                    </Tooltip>
                   </>
                 )}
               </div>

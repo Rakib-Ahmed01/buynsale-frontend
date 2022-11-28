@@ -53,11 +53,11 @@ export default function Register() {
         const imageUrl = imageData.data.url;
         createUserWithMailAndPass(email, password)
           .then(() => {
-            updateUserProfile(name, imageUrl, isSeller)
+            updateUserProfile(name, imageUrl)
               .then(() => {
-                saveUserToDb(name, email)
+                saveUserToDb(name, email, imageUrl)
                   .then((res) => res.json())
-                  .then((data) => {
+                  .then(() => {
                     setLoading(false);
                     toast.success('Account Created Successfully');
                     logout(false);
@@ -112,7 +112,7 @@ export default function Register() {
       });
   };
 
-  const saveUserToDb = (name, email) => {
+  const saveUserToDb = (name, email, image) => {
     return fetch(`${process.env.REACT_APP_url}/users?email=${email}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
@@ -120,6 +120,9 @@ export default function Register() {
         name,
         email,
         isSeller,
+        isVerified: false,
+        isAdmin: false,
+        image,
       }),
     });
   };
@@ -188,7 +191,7 @@ export default function Register() {
             <input
               type="file"
               {...register('image', {
-                required: '*Image is required',
+                required: 'Image is required*',
               })}
               placeholder="Profile Photo"
             />
@@ -259,14 +262,14 @@ export default function Register() {
             )}
 
             <input
-              type="password"
+              type={`${seePassword ? 'text' : 'password'}`}
               className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
               {...register('password', {
                 required: '*Password is required',
                 minLength: {
                   value: 6,
-                  message: 'Password must be at least 6 characters long',
+                  message: 'Password must be at least 6 characters',
                 },
               })}
             />

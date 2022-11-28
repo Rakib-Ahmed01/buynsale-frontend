@@ -40,9 +40,9 @@ export default function Login() {
         console.log(err);
         setLoading(false);
         if (err.message === 'Firebase: Error (auth/user-not-found).') {
-          toast.error('Incorrect email');
+          toast.error('User not found');
         } else if (err.message === 'Firebase: Error (auth/wrong-password).') {
-          toast.error('Incorrect password');
+          toast.error('Wrong password');
         }
       });
   };
@@ -83,6 +83,8 @@ export default function Login() {
         name,
         email,
         isSeller: false,
+        isAdmin: false,
+        isVerified: false,
       }),
     });
   };

@@ -1,4 +1,6 @@
+import { Tooltip } from '@mantine/core';
 import { useContext } from 'react';
+import { GoVerified } from 'react-icons/go';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 import useUserStatus from '../hooks/useUserStatus';
@@ -26,10 +28,24 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
             src={user?.photoURL}
             alt="avatar"
           />
-          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
-            {user?.displayName} (
-            <span className="capitalize">{userStatus?.role}</span>)
-          </h4>
+          {userStatus.role === 'buyer' || !userStatus.isSeller ? (
+            <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
+              {user?.displayName} (
+              <span className="capitalize">{userStatus?.role}</span>)
+            </h4>
+          ) : (
+            <Tooltip label="Veified Seller">
+              <div className="flex justify-center items-center gap-[4px] mt-2">
+                <h2 className="font-medium text-gray-800 dark:text-gray-200 hover:underline">
+                  {userStatus?.name}{' '}
+                  <span className="capitalize">({userStatus?.role})</span>
+                </h2>
+                <button>
+                  <GoVerified className="w-4 h-4 text-blue-500" />
+                </button>
+              </div>
+            </Tooltip>
+          )}
           <p className="sm:block mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">
             {user?.email}
           </p>
