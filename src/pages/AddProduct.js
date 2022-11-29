@@ -167,7 +167,7 @@ export default function AddProduct() {
             Phone Condtion
           </label>
           <select
-            className="form-select block w-full border p-[6px] rounded focus:border focus:border-blue-400 focus:outline-none font-[300] text-[12px] bg-white"
+            className="form-select block w-full border p-[6px] rounded focus:border focus:border-blue-500 focus:outline-none font-[300] text-[12px] bg-white"
             {...register('condition', {
               required: 'Phone condition is required*',
             })}

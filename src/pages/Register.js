@@ -84,8 +84,8 @@ export default function Register() {
     const provider = new GoogleAuthProvider();
     signInWithProvider(provider)
       .then((res) => {
-        const { displayName, email } = res.user;
-        saveUserToDb(displayName, email)
+        const { displayName, email, photoURL } = res.user;
+        saveUserToDb(displayName, email, photoURL)
           .then((res) => res.json())
           .then(() => {
             setLoadingForGoogle(false);
@@ -113,6 +113,7 @@ export default function Register() {
   };
 
   const saveUserToDb = (name, email, image) => {
+    console.log(image);
     return fetch(`${process.env.REACT_APP_url}/users?email=${email}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },

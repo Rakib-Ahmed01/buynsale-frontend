@@ -12,6 +12,7 @@ import { IoLocationOutline, IoPricetagOutline } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
 import { PhotoView } from 'react-photo-view';
 import { AuthContext } from '../contexts/UserContext';
+
 export default function Product({ product, componentType }) {
   const queryClient = useQueryClient();
   const [opened, setOpened] = useState(false);
@@ -42,7 +43,11 @@ export default function Product({ product, componentType }) {
 
   let id;
 
-  if (componentType === 'orders' || componentType === 'wishlists') {
+  if (
+    componentType === 'orders' ||
+    componentType === 'wishlists' ||
+    componentType === 'report'
+  ) {
     id = productId;
   } else {
     id = _id;
@@ -152,7 +157,35 @@ export default function Product({ product, componentType }) {
           toast.error('Something went worng!');
         });
   };
+
   const handleDelete = () => {};
+
+  const handleReport = () => {
+    const reportProduct = { ...product };
+    delete reportProduct._id;
+
+    fetch(`${process.env.REACT_APP_url}/reported-products`, {
+      method: 'PUT',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        ...reportProduct,
+        productId: id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        const { acknowledged } = data;
+        if (acknowledged) {
+          toast.success(`Reported successfully`);
+          queryClient.invalidateQueries({ queryKey: ['reportedProducts'] });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Something went worng!');
+      });
+  };
 
   const { user } = useContext(AuthContext);
 
@@ -166,10 +199,10 @@ export default function Product({ product, componentType }) {
       <div className="p-2">
         <div className="flex justify-between items-center gap-8">
           <h2 className="text-xl font-semibold tracking-wide">{title}</h2>
-          <div className="w-7 h-7 rounded-full bg-red-500 flex justify-center items-center">
+          <div className="w-7 h-7 rounded-full bg-gray-700 flex justify-center items-center">
             <Tooltip label="Report to Admin">
-              <button>
-                <MdReport color="white" className="w-5 h-5" />
+              <button onClick={handleReport}>
+                <MdReport color="white" className="w-4 h-4" />
               </button>
             </Tooltip>
           </div>
@@ -311,15 +344,14 @@ export default function Product({ product, componentType }) {
           </div>
         </div>
       )}
-      {componentType === 'my-products' && (
+      {(componentType === 'my-products' || componentType === 'report') && (
         <div className="flex gap-2 px-2 pb-2">
-          <button className="btn w-full" onClick={handleAdvertise}>
-            Advertise
-          </button>
-          <button
-            className="secondary-btn w-full bg-red-500 hover:bg-red-400"
-            onClick={handleDelete}
-          >
+          {componentType === 'my-products' && (
+            <button className="btn w-full" onClick={handleAdvertise}>
+              Advertise
+            </button>
+          )}
+          <button className="secondary-btn w-full" onClick={handleDelete}>
             Delete
           </button>
         </div>

@@ -26,7 +26,7 @@ const Sidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
     <div className={`sidebar sticky top-0 ${classes}`}>
       <div className="flex flex-col md:w-64 min-h-screen py-8 bg-white  dark:bg-gray-900 dark:border-gray-700">
         <h2
-          className={`text-center md:px-8 md:text-left text-lg md:text-xl font-bold ${
+          className={`text-center md:px-7 md:text-left text-lg md:text-xl font-bold ${
             isDrawer && '-mt-[50px]'
           }`}
         >
