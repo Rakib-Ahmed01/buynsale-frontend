@@ -123,6 +123,7 @@ export default function Register() {
         isSeller,
         isVerified: false,
         isAdmin: false,
+        isDeleted: false,
         image,
       }),
     });

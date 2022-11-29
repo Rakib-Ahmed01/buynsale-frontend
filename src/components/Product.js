@@ -32,6 +32,7 @@ export default function Product({ product, componentType }) {
     _id,
     productId,
     isAdvertised,
+    sellerEmail,
   } = product;
 
   const {
@@ -40,6 +41,8 @@ export default function Product({ product, componentType }) {
     formState: { errors },
     reset,
   } = useForm();
+
+  const { user } = useContext(AuthContext);
 
   let id;
 
@@ -58,8 +61,8 @@ export default function Product({ product, componentType }) {
     const order = { ...product };
     delete order._id;
 
-    if (isAdvertised) {
-      toast.error('This Product is already in advertised section');
+    if (user.email === sellerEmail) {
+      toast.error('You can not buy your product');
     } else {
       fetch(`${process.env.REACT_APP_url}/orders`, {
         method: 'PUT',
@@ -186,8 +189,6 @@ export default function Product({ product, componentType }) {
         toast.error('Something went worng!');
       });
   };
-
-  const { user } = useContext(AuthContext);
 
   return (
     <div className="product border rounded-md">
@@ -328,7 +329,11 @@ export default function Product({ product, componentType }) {
                   {errors.location.message}
                 </small>
               )}
-              <button type="submit" className="btn w-full">
+              <button
+                type="submit"
+                className="btn w-full"
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             </form>

@@ -1,30 +1,69 @@
 import { Tooltip } from '@mantine/core';
-import { useContext } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 import { GoVerified } from 'react-icons/go';
-import { AuthContext } from '../contexts/UserContext';
 
 export default function SellerBuyer({ sellerOrBuyer, componentType }) {
   const { image, name, email, isVerified, isSeller } = sellerOrBuyer;
-  const { user } = useContext(AuthContext);
+
+  const queryClient = useQueryClient();
 
   const handleDelete = () => {
-    // fetch(`${process.env.REACT_APP_url}/users?email=${email}`, {
-    //   method: 'PUT',
-    // });
-  };
-  const handleVerify = () => {};
-  const handleUnVerify = () => {
-    fetch(`${process.env.REACT_APP_url}/unverify?email=${user.email}`, {
+    fetch(`${process.env.REACT_APP_url}/delete?email=${email}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.acknowledged) {
+          toast.success('Deleted the user successfully');
+          queryClient.invalidateQueries({
+            queryKey: ['sellers'],
+          });
+          queryClient.invalidateQueries({
+            queryKey: ['buyers'],
+          });
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  const handleVerify = () => {
+    fetch(`${process.env.REACT_APP_url}/verify?email=${email}`, {
+      method: 'PUT',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success('Verified the user successfully');
+          queryClient.invalidateQueries({
+            queryKey: ['sellers'],
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleUnVerify = () => {
+    fetch(`${process.env.REACT_APP_url}/unverify?email=${email}`, {
+      method: 'PUT',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success('Unverified the user successfully');
+          queryClient.invalidateQueries({
+            queryKey: ['sellers'],
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log(sellerOrBuyer);
 
   return (
     <div className="border rounded-md p-2">

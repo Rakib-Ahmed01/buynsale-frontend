@@ -86,6 +86,7 @@ export default function Login() {
         isSeller: false,
         isAdmin: false,
         isVerified: false,
+        isDeleted: false,
       }),
     });
   };
