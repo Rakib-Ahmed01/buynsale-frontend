@@ -40,8 +40,6 @@ export default function AddProduct() {
     delete data.number;
     delete data.yearsOfUse;
 
-    console.log(userRole?.isVerified);
-
     fetch(
       `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgBbApiKey}`,
       {
@@ -73,7 +71,6 @@ export default function AddProduct() {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.acknowledged) {
               toast.success('Product has been added successfully');
               navigate('/all-products');

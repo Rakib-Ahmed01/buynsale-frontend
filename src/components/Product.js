@@ -84,7 +84,6 @@ export default function Product({ product, componentType }) {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           const { upsertedId, matchedCount } = data;
           if (!upsertedId && matchedCount) {
             toast.error(`You've already booked ${title}`);
@@ -174,13 +173,11 @@ export default function Product({ product, componentType }) {
   };
 
   const handleDelete = () => {
-    console.log(id);
     fetch(`${process.env.REACT_APP_url}/products/${id}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.success('Product deleted successfully');
         }
@@ -205,7 +202,6 @@ export default function Product({ product, componentType }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const { acknowledged } = data;
         if (acknowledged) {
           toast.success(`Reported successfully`);

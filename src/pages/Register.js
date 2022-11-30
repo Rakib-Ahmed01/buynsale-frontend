@@ -39,8 +39,6 @@ export default function Register() {
     const formData = new FormData();
     formData.append('image', image);
 
-    console.log({ ...data, isSeller });
-
     fetch(
       `https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgBbApiKey}`,
       {
@@ -77,7 +75,11 @@ export default function Register() {
             toast.error(err.message.replace('Firebase: ', ''));
           });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        toast.error('Something went wrong!');
+      });
   };
   const handleGoogelLogin = () => {
     setLoadingForGoogle(true);
@@ -113,7 +115,6 @@ export default function Register() {
   };
 
   const saveUserToDb = (name, email, image) => {
-    console.log(image);
     return fetch(`${process.env.REACT_APP_url}/users?email=${email}`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },

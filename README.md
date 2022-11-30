@@ -13,3 +13,7 @@
 7. I used react-hot-toast for toast
 8. I used lottie-react for animated image
 9. and many more...
+
+### Admin Email: rakib@gmail.com
+
+### Admin Password: 123456
