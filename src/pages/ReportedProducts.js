@@ -22,7 +22,7 @@ export default function ReportedProducts() {
   return (
     <>
       {reportedProducts.length ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
           {reportedProducts.map((product) => {
             return (
               <Product

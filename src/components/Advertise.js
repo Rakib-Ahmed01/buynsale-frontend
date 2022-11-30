@@ -19,7 +19,7 @@ export default function Advertise() {
         !products.length ? 'hidden' : ''
       }`}
     >
-      <div className="container px-6 py-10 mx-auto">
+      <div className="w-[98%] md:container py-10 mx-auto">
         <div>
           <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize xl:text-4xl lg:text-4xl dark:text-white mb-3">
             Advertised Products
@@ -31,7 +31,7 @@ export default function Advertise() {
             consectetur.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
           {products.slice(0, 6).map((product, index) => {
             return (
               <Product

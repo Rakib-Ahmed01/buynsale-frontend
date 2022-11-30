@@ -8,7 +8,11 @@ import { AuthContext } from '../contexts/UserContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
+
+  if (loading) {
+    return;
+  }
 
   return (
     <div className="header">
@@ -109,10 +113,10 @@ const Header = () => {
                     >
                       Dashboard
                     </NavLink>
-                    <Tooltip label={user.displayName}>
+                    <Tooltip label={user?.displayName}>
                       <img
-                        src={user.photoURL}
-                        alt={user.displayName}
+                        src={user?.photoURL}
+                        alt={user?.displayName}
                         className="my-2 md:mx-3 block w-8 h-8 rounded-full"
                       />
                     </Tooltip>

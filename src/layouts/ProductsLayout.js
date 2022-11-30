@@ -4,7 +4,6 @@ import { FiMenu } from 'react-icons/fi';
 import { Outlet } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Navbar from '../components/Header';
-import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 import { AuthContext } from '../contexts/UserContext';
 
@@ -13,12 +12,12 @@ const ProductsLayout = () => {
   const [opened, setOpened] = useState(false);
 
   if (loading) {
-    return <Loader />;
+    return;
   }
   return (
     <div className="relative">
       <Navbar />
-      <div className="flex gap-1 md:gap-4">
+      <div className="flex md:gap-4">
         <div className="h-screen sticky top-0">
           <Sidebar classes={'hidden md:block'} />
         </div>

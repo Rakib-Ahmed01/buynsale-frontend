@@ -161,7 +161,23 @@ export default function Product({ product, componentType }) {
         });
   };
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    console.log(id);
+    fetch(`${process.env.REACT_APP_url}/products/${id}`, {
+      method: 'PUT',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          toast.success('Product deleted successfully');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Something went wrong!');
+      });
+  };
 
   const handleReport = () => {
     const reportProduct = { ...product };
@@ -191,7 +207,7 @@ export default function Product({ product, componentType }) {
   };
 
   return (
-    <div className="product border rounded-md">
+    <div className="product border rounded-md mx-auto">
       <div>
         <PhotoView src={image}>
           <img src={image} alt="" />
@@ -200,7 +216,7 @@ export default function Product({ product, componentType }) {
       <div className="p-2">
         <div className="flex justify-between items-center gap-8">
           <h2 className="text-xl font-semibold tracking-wide">{title}</h2>
-          <div className="w-7 h-7 rounded-full bg-gray-700 flex justify-center items-center">
+          <div className="w-7 h-7 rounded-full bg-gray-800 flex justify-center items-center">
             <Tooltip label="Report to Admin">
               <button onClick={handleReport}>
                 <MdReport color="white" className="w-4 h-4" />
@@ -231,7 +247,7 @@ export default function Product({ product, componentType }) {
           </span>
         </p>
         <div className="space-y-1 text-[16.5px]">
-          <p>{description.substr(0, 100)}...</p>
+          <p>{description.substr(0, 110)}...</p>
           <p>
             Brand: <span className=" font-semibold">{categoryName}</span>
           </p>
@@ -282,12 +298,12 @@ export default function Product({ product, componentType }) {
             />
             <form className="space-y-2" onSubmit={handleSubmit(hanldeBooking)}>
               <Input
-                placeholder={user.displayName}
+                placeholder={user?.displayName}
                 icon={<AiOutlineUser />}
                 disabled
               />
               <Input
-                placeholder={user.email}
+                placeholder={user?.email}
                 icon={<AiOutlineMail />}
                 disabled
               />

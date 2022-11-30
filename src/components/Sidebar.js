@@ -15,11 +15,7 @@ const Sidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
   );
 
   if (isLoading) {
-    return (
-      <div>
-        <HashLoader color="#3b82f6" />
-      </div>
-    );
+    return;
   }
 
   return (

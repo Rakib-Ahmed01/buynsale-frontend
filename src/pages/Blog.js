@@ -1,7 +1,7 @@
 export default function Blog() {
   return (
     <section className="bg-white dark:bg-gray-900">
-      <div className="container px-6 py-10 mx-auto">
+      <div className="mx-auto w-[98%] md:container mt-8">
         <div className="grid grid-cols-1 gap-5 -mt-6 lg:grid-cols-2 auto-rows-fr">
           <div className="h-full rounded-md shadow">
             <img

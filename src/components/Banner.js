@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
-    <div className="rounded-sm bg-black">
-      <div className="container px-6 py-8 md:py-16 mx-auto">
+    <div className="rounded-sm bg-gray-900">
+      <div className="mx-auto w-[98%] md:px-4 md:container py-8 md:py-12 px-1">
         <div className="items-center lg:flex">
           <div className="w-full lg:w-1/2" data-aos="fade-right">
             <div className="lg:max-w-lg">

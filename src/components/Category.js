@@ -4,10 +4,7 @@ export default function Category({ category, index }) {
   const { _id, image, categoryName } = category;
   return (
     <>
-      <div
-        className="category overflow-hidden max-w-[400px] max-h-[250px] relative mx-auto"
-        data-aos={`${index % 2 !== 0 ? 'fade-left' : 'fade-right'}`}
-      >
+      <div className="category overflow-hidden max-h-[250px] relative rounded-tr rounded-br rounded-bl">
         <div className="">
           <Link to={`../products/${_id}`}>
             <img src={image} alt={categoryName} className="w-full h-full" />

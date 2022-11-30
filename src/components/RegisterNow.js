@@ -17,7 +17,7 @@ const RegisterNow = () => {
   return (
     <div>
       <section className="bg-white dark:bg-gray-900">
-        <div className="container flex flex-col items-center px-4 py-12 mx-auto text-center">
+        <div className="w-[98%] md:container flex flex-col items-center px-4 py-12 mx-auto text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-gray-700 sm:text-4xl dark:text-white">
             Join us and get the update <br /> from anywhere
           </h2>

@@ -18,11 +18,11 @@ const ProductsLayout = () => {
   return (
     <div className="relative">
       <Navbar />
-      <div className="flex gap-1 md:gap-4">
+      <div className="flex md:gap-4">
         <div className="h-screen sticky top-0">
           <DashboardSidebar classes={'hidden md:block'} />
         </div>
-        <div className="w-full">
+        <div className="w-[98%] md:container mx-auto">
           <Outlet />
         </div>
       </div>
