@@ -23,8 +23,6 @@ export default function AddProduct() {
 
   const navigate = useNavigate();
 
-  console.log(userRole);
-
   const {
     register,
     handleSubmit,

@@ -85,9 +85,9 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
             <>
               <NavLink
                 className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
-                to={`/dashboard/all-buyers`}
+                to={`/dashboard/all-users`}
               >
-                <span className="mx-4 font-medium">All Buyers</span>
+                <span className="mx-4 font-medium">All Users</span>
               </NavLink>
               <NavLink
                 className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"

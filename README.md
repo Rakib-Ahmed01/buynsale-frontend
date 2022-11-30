@@ -1,6 +1,6 @@
 # Project Name: Buy N Sale
 
-## Live Link: [Buy N Sale](https://adventurer-3789a.web.app/)
+## Live Link: [Buy N Sale](https://buynsale-50e8a.web.app/home)
 
 ### Things i did in this project
 

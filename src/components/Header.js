@@ -100,7 +100,7 @@ const Header = () => {
                     >
                       <Tooltip label="Login" position="bottom">
                         <button>
-                          <FiLogIn title="login" />
+                          <FiLogIn title="login" className="mt-[7px]" />
                         </button>
                       </Tooltip>
                     </Link>

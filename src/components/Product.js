@@ -11,6 +11,7 @@ import { GoVerified } from 'react-icons/go';
 import { IoLocationOutline, IoPricetagOutline } from 'react-icons/io5';
 import { MdReport } from 'react-icons/md';
 import { PhotoView } from 'react-photo-view';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserContext';
 
 export default function Product({ product, componentType }) {
@@ -43,6 +44,7 @@ export default function Product({ product, componentType }) {
   } = useForm();
 
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   let id;
 
@@ -57,11 +59,15 @@ export default function Product({ product, componentType }) {
   }
 
   const hanldeBooking = (data) => {
+    if (!user) {
+      toast.error('Login First');
+      return navigate('/login');
+    }
     const { number, location } = data;
     const order = { ...product };
     delete order._id;
 
-    if (user.email === sellerEmail) {
+    if (user?.email === sellerEmail) {
       toast.error('You can not buy your product');
     } else {
       fetch(`${process.env.REACT_APP_url}/orders`, {
@@ -69,8 +75,8 @@ export default function Product({ product, componentType }) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           ...order,
-          buyerEmail: user.email,
-          buyerName: user.displayName,
+          buyerEmail: user?.email,
+          buyerName: user?.displayName,
           buyerPhone: number,
           meetingLocation: location,
           productId: id,
@@ -106,6 +112,12 @@ export default function Product({ product, componentType }) {
   };
 
   const handleWishlist = () => {
+    if (!user) {
+      if (!user) {
+        toast.error('Login First');
+        navigate('/login');
+      }
+    }
     const wishlistProduct = { ...product };
     delete wishlistProduct._id;
 

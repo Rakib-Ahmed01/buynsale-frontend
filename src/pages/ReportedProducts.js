@@ -1,15 +1,23 @@
 import { Paper, Text } from '@mantine/core';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { useContext } from 'react';
 import Loader from '../components/Loader';
 import Product from '../components/Product';
+import { AuthContext } from '../contexts/UserContext';
 
 export default function ReportedProducts() {
+  const { user } = useContext(AuthContext);
   const { data: reportedProducts, isLoading } = useQuery(
     ['reportedProducts'],
     async () => {
       const data = await axios(
-        `${process.env.REACT_APP_url}/reported-products`
+        `${process.env.REACT_APP_url}/reported-products?email=${user?.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('token-bns')}`,
+          },
+        }
       );
       return data.data;
     }

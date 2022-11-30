@@ -8,9 +8,14 @@ import { AuthContext } from '../contexts/UserContext';
 
 export default function AllBuyers() {
   const { user } = useContext(AuthContext);
-  const { data: buyers, isLoading } = useQuery(['buyers'], async () => {
+  const { data: users, isLoading } = useQuery(['users'], async () => {
     const data = await axios(
-      `${process.env.REACT_APP_url}/buyers?email=${user.email}`
+      `${process.env.REACT_APP_url}/users?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token-bns')}`,
+        },
+      }
     );
     return data.data;
   });
@@ -21,9 +26,9 @@ export default function AllBuyers() {
 
   return (
     <>
-      {buyers.length ? (
+      {users.length ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
-          {buyers.map((buyer) => {
+          {users.map((buyer) => {
             return (
               <SellerBuyer
                 key={buyer._id}

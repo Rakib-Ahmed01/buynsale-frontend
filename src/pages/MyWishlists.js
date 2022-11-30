@@ -10,7 +10,12 @@ export default function MyWishlists() {
   const { user } = useContext(AuthContext);
   const { data: wishlists, isLoading } = useQuery(['myWishlists'], async () => {
     const data = await axios(
-      `${process.env.REACT_APP_url}/wishlists?email=${user.email}`
+      `${process.env.REACT_APP_url}/wishlists?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token-bns')}`,
+        },
+      }
     );
     return data.data;
   });

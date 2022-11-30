@@ -10,7 +10,12 @@ export default function MyOrders() {
   const { user } = useContext(AuthContext);
   const { data: orders, isLoading } = useQuery(['myOrders'], async () => {
     const data = await axios(
-      `${process.env.REACT_APP_url}/orders?email=${user.email}`
+      `${process.env.REACT_APP_url}/orders?email=${user.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem('token-bns')}`,
+        },
+      }
     );
     return data.data;
   });
@@ -21,9 +26,9 @@ export default function MyOrders() {
 
   return (
     <>
-      {orders.length ? (
+      {orders?.length ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-2">
-          {orders.map((product) => {
+          {orders?.map((product) => {
             return (
               <Product
                 key={product._id}

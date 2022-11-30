@@ -4,7 +4,7 @@ import toast from 'react-hot-toast';
 import { GoVerified } from 'react-icons/go';
 
 export default function SellerBuyer({ sellerOrBuyer, componentType }) {
-  const { image, name, email, isVerified, isSeller } = sellerOrBuyer;
+  const { image, name, email, isVerified, isSeller, isAdmin } = sellerOrBuyer;
 
   const queryClient = useQueryClient();
 
@@ -20,7 +20,7 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
             queryKey: ['sellers'],
           });
           queryClient.invalidateQueries({
-            queryKey: ['buyers'],
+            queryKey: ['users'],
           });
         }
       })
@@ -63,7 +63,29 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
       });
   };
 
-  console.log(sellerOrBuyer);
+  const handleAdmin = () => {
+    fetch(`${process.env.REACT_APP_url}/admin?email=${email}`, {
+      method: 'PUT',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged && data.modifiedCount) {
+          toast.success('This user is now an admin');
+          queryClient.invalidateQueries({
+            queryKey: ['sellers'],
+          });
+          queryClient.invalidateQueries({
+            queryKey: ['users'],
+          });
+        } else {
+          toast.error('This user is already an admin');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="border rounded-md p-2">
@@ -94,15 +116,35 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
         <p>
           Email: <span className=" font-semibold">{email}</span>
         </p>
+        <p>
+          Admin:{' '}
+          <span className=" font-semibold">
+            {isAdmin.toString().charAt(0)?.toUpperCase() +
+              isAdmin.toString().slice(1)}
+          </span>
+        </p>
+        <p>
+          Seller:{' '}
+          <span className=" font-semibold">
+            {isSeller.toString().charAt(0)?.toUpperCase() +
+              isSeller.toString().slice(1)}
+          </span>
+        </p>
       </div>
       <div className="flex gap-2 mt-1">
         <button className="btn w-full" onClick={handleDelete}>
           Delete
         </button>
+        <button className="secondary-btn w-full" onClick={handleAdmin}>
+          Admin
+        </button>
         {componentType === 'seller' && (
           <div className="w-full">
             {isVerified ? (
-              <button className="secondary-btn w-full" onClick={handleUnVerify}>
+              <button
+                className="secondary-btn w-full px-4"
+                onClick={handleUnVerify}
+              >
                 Unverify
               </button>
             ) : (
