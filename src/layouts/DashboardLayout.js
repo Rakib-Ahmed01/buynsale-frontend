@@ -31,7 +31,7 @@ const ProductsLayout = () => {
           opened={opened}
           onClose={() => setOpened(false)}
           className="md:hidden p-1"
-          transitionDuration={600}
+          transitionDuration={500}
         >
           <DashboardSidebar
             classes={'block'}

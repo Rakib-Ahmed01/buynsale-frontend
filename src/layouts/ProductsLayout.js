@@ -29,8 +29,6 @@ const ProductsLayout = () => {
         <Drawer
           opened={opened}
           onClose={() => setOpened(false)}
-          // padding="xl"
-          // size="xl"
           className="md:hidden p-1"
           transitionDuration={600}
         >
@@ -38,9 +36,7 @@ const ProductsLayout = () => {
         </Drawer>
         <div
           className={`w-12 h-12 rounded-full bg-blue-500 justify-center items-center fixed left-1 bottom-3 md:hidden ${
-            opened
-              ? 'hidden opacity-0'
-              : 'flex opacity-100 transition-opacity duration-500 delay-500'
+            opened ? 'hidden' : 'flex'
           }`}
           onClick={() => setOpened(true)}
         >
