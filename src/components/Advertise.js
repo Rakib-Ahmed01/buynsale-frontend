@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Product from '../components/Product';
+import Loader from './Loader';
 
 export default function Advertise() {
   const { data: products, isLoading } = useQuery(['products'], async () => {
@@ -10,7 +11,7 @@ export default function Advertise() {
   });
 
   if (isLoading) {
-    return;
+    return <Loader />;
   }
 
   return (

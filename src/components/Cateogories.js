@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Category from './Category';
+import Loader from './Loader';
 
 export default function Cateogories() {
   const { data: categories, isLoading } = useQuery(
@@ -14,7 +15,7 @@ export default function Cateogories() {
   );
 
   if (isLoading) {
-    return;
+    return <Loader />;
   }
   return (
     <section className="bg-white dark:bg-gray-900">
