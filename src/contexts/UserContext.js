@@ -25,7 +25,7 @@ export default function UserContext({ children }) {
         setUser(user);
         setTimeout(() => {
           setLoading(false);
-        }, 250);
+        }, 1500);
       } else {
         setLoading(false);
       }
