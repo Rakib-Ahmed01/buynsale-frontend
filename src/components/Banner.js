@@ -15,9 +15,10 @@ const Banner = () => {
               </h1>
 
               <p className="mt-2 text-gray-200 dark:text-gray-400">
-                Find the right destination for you. Choose from many exiting
-                places. Engage with tourists from diffrent places. Start
-                exploring today. Over 10+ exiting destinations...
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
+                animi iure quisquam corporis dignissimos ut quo aut, facilis
+                pariatur exercitationem tenetur ab, praesentium, laboriosam
+                esse.
               </p>
 
               <Link to="/all-products" className="btn mt-6 inline-block">
