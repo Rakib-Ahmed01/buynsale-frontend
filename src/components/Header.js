@@ -27,7 +27,7 @@ const Header = () => {
                   alt="logo"
                 />
                 <Link
-                  className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl dark:hover:text-gray-300 text-blue-500 mb-1"
+                  className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl dark:hover:text-gray-300 text-cyan-500/80 mb-1"
                   to="/"
                 >
                   Buy N Sale
@@ -74,20 +74,20 @@ const Header = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center ">
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 md:mx-3 md:my-0"
                   to="/home"
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 md:mx-3 md:my-0"
                   to="/all-products"
                 >
                   Products
                 </NavLink>
 
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 md:mx-3 md:my-0"
                   to="/blog"
                 >
                   Blog
@@ -95,7 +95,7 @@ const Header = () => {
                 {!user ? (
                   <>
                     <Link
-                      className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:ml-3 md:my-0"
+                      className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 md:ml-3 md:my-0"
                       to="/login"
                     >
                       <Tooltip label="Login" position="bottom">
@@ -108,7 +108,7 @@ const Header = () => {
                 ) : (
                   <>
                     <NavLink
-                      className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                      className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-cyan-500 dark:hover:text-cyan-400 md:mx-3 md:my-0"
                       to="/dashboard"
                     >
                       Dashboard

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function Category({ category, index }) {
+export default function Category({ category }) {
   const { _id, image, categoryName } = category;
   return (
     <>

@@ -8,7 +8,7 @@ export default function FAQ() {
 
         <div className="grid grid-cols-1 gap-8 mt-8 lg:mt-16 md:grid-cols-2 xl:grid-cols-3">
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -41,7 +41,7 @@ export default function FAQ() {
           </div>
 
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -74,7 +74,7 @@ export default function FAQ() {
           </div>
 
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -107,7 +107,7 @@ export default function FAQ() {
           </div>
 
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -141,7 +141,7 @@ export default function FAQ() {
           </div>
 
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -174,7 +174,7 @@ export default function FAQ() {
           </div>
 
           <div>
-            <div className="inline-block p-3 text-white bg-blue-600 rounded-lg">
+            <div className="inline-block p-3 text-white bg-cyan-600 rounded-lg">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"

@@ -41,7 +41,7 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
                   <span className="capitalize">({userStatus?.role})</span>
                 </h2>
                 <button>
-                  <GoVerified className="w-4 h-4 text-blue-500" />
+                  <GoVerified className="w-4 h-4 text-cyan-500" />
                 </button>
               </div>
             </Tooltip>
@@ -52,13 +52,13 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
         </div>
         <div onClick={() => setOpened(false)}>
           <NavLink
-            className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+            className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
             to={`/dashboard/my-orders`}
           >
             <span className="mx-4 font-medium">My Orders</span>
           </NavLink>
           <NavLink
-            className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+            className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
             to={`/dashboard/my-wishlists`}
           >
             <span className="mx-4 font-medium">My Wishlists</span>
@@ -66,13 +66,13 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
           {userStatus?.role === 'seller' || userStatus?.role === 'admin' ? (
             <>
               <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
                 to={`/dashboard/add-product`}
               >
                 <span className="mx-4 font-medium">Add Product</span>
               </NavLink>
               <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
                 to={`/dashboard/my-products`}
               >
                 <span className="mx-4 font-medium">My Products</span>
@@ -84,19 +84,19 @@ const DashboardSidebar = ({ classes, isDrawer, setOpened = () => {} }) => {
           {userStatus?.role === 'admin' && (
             <>
               <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
                 to={`/dashboard/all-users`}
               >
                 <span className="mx-4 font-medium">All Users</span>
               </NavLink>
               <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
                 to={`/dashboard/all-sellers`}
               >
                 <span className="mx-4 font-medium">All Sellers</span>
               </NavLink>
               <NavLink
-                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+                className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
                 to={`/dashboard/reported-products`}
               >
                 <span className="mx-4 font-medium">Reported Products</span>

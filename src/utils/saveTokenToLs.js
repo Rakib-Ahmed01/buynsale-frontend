@@ -1,5 +1,5 @@
 function saveToken(email, name) {
-  fetch(`${process.env.REACT_APP_url}/jwt`, {
+  fetch(`${process.env.REACT_APP_url}/users/jwt`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ email, name }),

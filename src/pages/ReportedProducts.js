@@ -12,7 +12,7 @@ export default function ReportedProducts() {
     ['reportedProducts'],
     async () => {
       const data = await axios(
-        `${process.env.REACT_APP_url}/reported-products?email=${user?.email}`,
+        `${process.env.REACT_APP_url}/products/reported-products?email=${user?.email}`,
         {
           headers: {
             authorization: `Bearer ${localStorage.getItem('token-bns')}`,

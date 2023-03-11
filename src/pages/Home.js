@@ -1,7 +1,6 @@
 import Advertise from '../components/Advertise';
 import Banner from '../components/Banner';
 import Cateogories from '../components/Cateogories';
-import FAQ from '../components/FAQ';
 import FromTheBlog from '../components/FromTheBlog';
 import RegisterNow from '../components/RegisterNow';
 
@@ -12,7 +11,6 @@ export default function Home() {
       <Cateogories />
       <Advertise />
       <FromTheBlog />
-      <FAQ />
       <RegisterNow />
     </>
   );

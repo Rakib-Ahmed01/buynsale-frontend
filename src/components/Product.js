@@ -192,7 +192,7 @@ export default function Product({ product, componentType }) {
     const reportProduct = { ...product };
     delete reportProduct._id;
 
-    fetch(`${process.env.REACT_APP_url}/reported-products`, {
+    fetch(`${process.env.REACT_APP_url}/products/reported-products`, {
       method: 'PUT',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({
@@ -234,7 +234,7 @@ export default function Product({ product, componentType }) {
         </div>
         <h2 className="text-md tracking-wide flex gap-1 -mt-[2px]">
           <span className="font-semibold text-gray-800">For sale by</span>
-          <span className="underline font-semibold text-blue-500 flex items-center gap-1">
+          <span className="underline font-semibold text-cyan-500 flex items-center gap-1">
             {!sellerVerified && sellerName}
             {sellerVerified && (
               <Tooltip label="Veified Seller">

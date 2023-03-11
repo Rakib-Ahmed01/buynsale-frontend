@@ -8,7 +8,7 @@ export default function Cateogories() {
     ['products-categories'],
     async () => {
       const data = await axios(
-        `${process.env.REACT_APP_url}/products-categories`
+        `${process.env.REACT_APP_url}/products/categories`
       );
       return data.data;
     }

@@ -10,7 +10,7 @@ export default function AllSellers() {
   const { user } = useContext(AuthContext);
   const { data: sellers, isLoading } = useQuery(['sellers'], async () => {
     const data = await axios(
-      `${process.env.REACT_APP_url}/sellers?email=${user.email}`,
+      `${process.env.REACT_APP_url}/users/sellers?email=${user.email}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem('token-bns')}`,

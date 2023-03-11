@@ -9,7 +9,7 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
   const queryClient = useQueryClient();
 
   const handleDelete = () => {
-    fetch(`${process.env.REACT_APP_url}/delete?email=${email}`, {
+    fetch(`${process.env.REACT_APP_url}/users/delete?email=${email}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
       });
   };
   const handleVerify = () => {
-    fetch(`${process.env.REACT_APP_url}/verify?email=${email}`, {
+    fetch(`${process.env.REACT_APP_url}/users/verify?email=${email}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
@@ -46,7 +46,7 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
       });
   };
   const handleUnVerify = () => {
-    fetch(`${process.env.REACT_APP_url}/unverify?email=${email}`, {
+    fetch(`${process.env.REACT_APP_url}/users/unverify?email=${email}`, {
       method: 'PUT',
     })
       .then((res) => res.json())
@@ -64,7 +64,7 @@ export default function SellerBuyer({ sellerOrBuyer, componentType }) {
   };
 
   const handleAdmin = () => {
-    fetch(`${process.env.REACT_APP_url}/admin?email=${email}`, {
+    fetch(`${process.env.REACT_APP_url}/users/admin?email=${email}`, {
       method: 'PUT',
     })
       .then((res) => res.json())

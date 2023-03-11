@@ -45,7 +45,7 @@ export default function FromTheBlog() {
                 <li>etc.</li>
               </ul>
 
-              <p className="mt-3 text-sm text-blue-500">21 October 2022</p>
+              <p className="mt-3 text-sm text-cyan-500">21 October 2022</p>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ export default function FromTheBlog() {
                 of an object, we use Object. getPrototypeOf and Object.
               </p>
 
-              <p className="mt-3 text-sm text-blue-500">02 September 2019</p>
+              <p className="mt-3 text-sm text-cyan-500">02 September 2019</p>
             </div>
           </div>
         </div>

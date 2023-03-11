@@ -20,7 +20,7 @@ code {
 
 @layer components {
   .btn {
-    @apply px-6 py-[10px] text-sm font-medium tracking-wide text-white uppercase transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none;
+    @apply px-6 py-[10px] text-sm font-medium tracking-wide text-white uppercase transition-colors duration-300 transform bg-cyan-600 rounded-md hover:bg-cyan-500 focus:outline-none;
   }
 
   .secondary-btn {
@@ -28,7 +28,7 @@ code {
   }
 
   .outline-btn {
-    @apply tracking-wider px-6 py-2 font-medium  text-sm text-blue-500 uppercase transition-colors duration-300 transform bg-white rounded-md lg:w-auto  focus:outline-none border-2 hover:bg-blue-500 hover:text-white border-blue-500 text-center;
+    @apply tracking-wider px-6 py-2 font-medium  text-sm text-cyan-500 uppercase transition-colors duration-300 transform bg-white rounded-md lg:w-auto  focus:outline-none border-2 hover:bg-cyan-500 hover:text-white border-cyan-500 text-center;
   }
 
   .delete-btn {
@@ -43,11 +43,11 @@ code {
     @apply h-[250px] object-cover rounded hover:scale-[1.2] transform duration-500;
   }
   .header .active {
-    @apply font-semibold text-blue-500 border-b-2   border-blue-500;
+    @apply font-semibold text-cyan-500 border-b-2   border-cyan-500;
   }
 
   .sidebar .active {
-    @apply bg-blue-500 text-white hover:bg-blue-500 rounded-r-full text-center;
+    @apply bg-cyan-500 text-white hover:bg-cyan-500 rounded-r-full text-center;
   }
 
   .product img {

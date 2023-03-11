@@ -9,7 +9,7 @@ const Banner = () => {
             <div className="lg:max-w-lg">
               <h1 className="text-2xl font-semibold text-gray-100 uppercase dark:text-white lg:text-4xl">
                 Best Quality Phone at
-                <span className="block -ml-[2px] mt-1 font-bold text-blue-500 text-4xl md:text-5xl">
+                <span className="block -ml-[2px] mt-1 font-bold text-cyan-500 text-4xl md:text-5xl">
                   Minimal Price
                 </span>
               </h1>

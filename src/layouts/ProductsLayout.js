@@ -35,9 +35,9 @@ const ProductsLayout = () => {
           <Sidebar classes={'block'} isDrawer={true} setOpened={setOpened} />
         </Drawer>
         <div
-          className={`w-12 h-12 rounded-full bg-blue-500 justify-center items-center fixed left-1 bottom-3 md:hidden ${
+          className={`w-12 h-12 rounded-full bg-cyan-500 justify-center items-center fixed left-1 bottom-3 md:hidden ${
             opened ? 'hidden' : 'flex'
-          }`}
+          } cursor-pointer`}
           onClick={() => setOpened(true)}
         >
           <FiMenu color="white" className="w-5 h-5" />

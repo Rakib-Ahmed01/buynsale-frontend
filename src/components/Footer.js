@@ -11,7 +11,7 @@ const Footer = () => {
             <div className="flex gap-1 justify-center items-center">
               <img src={logo} className="h-8 w-8 lg:w-10 lg:h-10" alt="logo" />
               <Link
-                className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl border-blue-500 mb-1 dark:hover:text-gray-300 text-blue-500"
+                className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl border-cyan-500 mb-1 dark:hover:text-gray-300 text-cyan-500/80"
                 to="/"
               >
                 Buy N Sale

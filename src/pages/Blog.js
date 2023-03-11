@@ -34,7 +34,7 @@ export default function Blog() {
                 <li>etc.</li>
               </ul>
 
-              <p className="mt-3 text-sm text-blue-500">21 October 2022</p>
+              <p className="mt-3 text-sm text-cyan-500">21 October 2022</p>
             </div>
           </div>
 
@@ -58,7 +58,7 @@ export default function Blog() {
                 of an object, we use Object. getPrototypeOf and Object.
               </p>
 
-              <p className="mt-3 text-sm text-blue-500">02 September 2019</p>
+              <p className="mt-3 text-sm text-cyan-500">02 September 2019</p>
             </div>
           </div>
           <div className="h-full rounded-md shadow">
@@ -93,7 +93,7 @@ export default function Blog() {
                 money, and helps developers write better code, more efficiently.
               </p>
 
-              <p className="mt-3 text-sm text-blue-500">28 August 2019</p>
+              <p className="mt-3 text-sm text-cyan-500">28 August 2019</p>
             </div>
           </div>
           <div className="h-full rounded-md shadow">
@@ -138,7 +138,7 @@ export default function Blog() {
                 </li>
               </ul>
 
-              <p className="mt-3 text-sm text-blue-500">20 October 2019</p>
+              <p className="mt-3 text-sm text-cyan-500">20 October 2019</p>
             </div>
           </div>
         </div>

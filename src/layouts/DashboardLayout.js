@@ -40,7 +40,7 @@ const ProductsLayout = () => {
           />
         </Drawer>
         <div
-          className="w-12 h-12 rounded-full bg-blue-500 flex justify-center items-center fixed left-1 bottom-3  md:hidden"
+          className="w-12 h-12 rounded-full bg-cyan-500 flex justify-center items-center fixed left-1 bottom-3  md:hidden cursor-pointer"
           onClick={() => setOpened(true)}
         >
           <FiMenu color="white" className="w-5 h-5" />

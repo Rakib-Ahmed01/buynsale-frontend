@@ -7,7 +7,7 @@ function useUserStatus(email) {
   const { setUserRole } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_url}/user-status?email=${email}`)
+    fetch(`${process.env.REACT_APP_url}/users/user-status?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);

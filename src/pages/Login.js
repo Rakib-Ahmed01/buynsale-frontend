@@ -104,7 +104,7 @@ export default function Login() {
           <div className="flex items-center justify-center mt-6">
             <Link
               to="/login"
-              className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white"
+              className="w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-cyan-500 dark:border-cyan-400 dark:text-white"
             >
               Login
             </Link>
@@ -137,7 +137,7 @@ export default function Login() {
 
             <input
               type="email"
-              className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full py-3 text-gray-700 bg-white border rounded-md px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-cyan-400 dark:focus:border-cyan-300 focus:ring-cyan-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Email address"
               {...register('email', {
                 required: '*Email is required',
@@ -180,7 +180,7 @@ export default function Login() {
 
             <input
               type={`${seePassword ? 'text' : 'password'}`}
-              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-cyan-400 dark:focus:border-cyan-300 focus:ring-cyan-300 focus:outline-none focus:ring focus:ring-opacity-40"
               placeholder="Password"
               {...register('password', {
                 required: '*Password is required',

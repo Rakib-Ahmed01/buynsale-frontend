@@ -6,7 +6,7 @@ export default function ProductCategories({ categories, setOpened }) {
       {categories.slice(0, 10).map((category) => {
         return (
           <NavLink
-            className="flex items-center md:px-4 py-2 text-gray-700 hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 rounded-r-full text-center -ml-1"
+            className="flex items-center md:px-4 py-2 text-gray-700 hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 rounded-r-full text-center -ml-1"
             to={`/products/${category._id}`}
             key={category._id}
             onClick={() => setOpened(false)}
@@ -16,7 +16,7 @@ export default function ProductCategories({ categories, setOpened }) {
         );
       })}
       <NavLink
-        className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
+        className="flex items-center md:px-4 py-2 text-gray-700 rounded-r-full hover:bg-cyan-200 dark:bg-gray-800 dark:text-gray-200 -ml-1"
         to={`/all-products`}
         onClick={() => setOpened(false)}
       >
