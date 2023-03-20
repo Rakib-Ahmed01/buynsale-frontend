@@ -27,7 +27,7 @@ const Header = () => {
                   alt="logo"
                 />
                 <Link
-                  className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl dark:hover:text-gray-300 text-cyan-500/80 mb-1"
+                  className="website-name -ml-[1px] mt-1 text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-2xl dark:hover:text-gray-300 text-cyan-500/80 mb-1"
                   to="/"
                 >
                   Buy N Sale
